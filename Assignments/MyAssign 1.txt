@@ -1,0 +1,115 @@
+mysql> use MyAssign
+Database changed
+mysql>  create table SALESPEOPLE ( Snum int(4), Sname varchar(10), City varchar(10), Comm float(3,2));
+Query OK, 0 rows affected, 2 warnings (0.02 sec)
+
+mysql> desc salespeople;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| Snum  | int         | YES  |     | NULL    |       |
+| Sname | varchar(10) | YES  |     | NULL    |       |
+| City  | varchar(10) | YES  |     | NULL    |       |
+| Comm  | float(3,2)  | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into salespeople values (1001, "Hoff", "London", .12),(1002, "Serres", "San Jose", .13),(1004, "Motika", "London", .11), (1007, "Rifkin", "Barcelona", .15), (1003, "Axelrod", "New York", .10);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> create table CUSTOMERS ( Cnum int(4), Cname varchar(10), City varchar(10), Rating int(4), Snum int(4)) ;
+Query OK, 0 rows affected, 3 warnings (0.02 sec)
+
+mysql> insert into CUSTOMERS values (2001, "Hoffman", "London", 100, 1001), (2002, "Giovanni", "Rome", 200, 1003), (2003, "Liu", "San Jose", 200, 1002), (2004, "Grass", "Berlin", 300, 1002), (2006, "Clemens", "London", 100, 1001), (2008, "Cisneros", "San Jose", 300, 1007),(2007, "Pereira", "Rome", 100, 1004);
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> create table ORDERS ( Onum int(4), Amt float(7,2), Odate date, Snum int(4), Cnum int(4));
+Query OK, 0 rows affected, 4 warnings (0.03 sec)
+
+mysql> insert into ORDERS values(3001, 18.69, '1990-10-03', 2008, 1007),
+    -> (3003, 767.19, '1990-10-03', 2001, 1001),
+    -> (3002, 1900.10, '1990-10-03', 2007, 1004),
+    -> (3005, 5160.45, '1990-10-03', 2003, 1002),
+    -> (3006, 1098.16, '1990-10-03', 2008, 1007),
+    -> (3009, 1713.23, '1990-10-04', 2002, 1003),
+    -> (3007, 75.75, '1990-10-04', 2004, 1002),
+    -> (3008, 4723.00, '1990-10-05', 2006, 1001),
+    -> (3010, 1309.95, '1990-10-06', 2004, 1002),
+    -> (3011, 9891.88, '1990-10-06', 2006, 1001);
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> show table orders
+    ->  show table orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'orders
+ show table orders' at line 1
+
+mysql> select * from orders;
++------+---------+------------+------+------+
+| Onum | Amt     | Odate      | Snum | Cnum |
++------+---------+------------+------+------+
+| 3001 |   18.69 | 1990-10-03 | 2008 | 1007 |
+| 3003 |  767.19 | 1990-10-03 | 2001 | 1001 |
+| 3002 | 1900.10 | 1990-10-03 | 2007 | 1004 |
+| 3005 | 5160.45 | 1990-10-03 | 2003 | 1002 |
+| 3006 | 1098.16 | 1990-10-03 | 2008 | 1007 |
+| 3009 | 1713.23 | 1990-10-04 | 2002 | 1003 |
+| 3007 |   75.75 | 1990-10-04 | 2004 | 1002 |
+| 3008 | 4723.00 | 1990-10-05 | 2006 | 1001 |
+| 3010 | 1309.95 | 1990-10-06 | 2004 | 1002 |
+| 3011 | 9891.88 | 1990-10-06 | 2006 | 1001 |
++------+---------+------------+------+------+
+10 rows in set (0.00 sec)
+
+mysql> select * from customers;
++------+----------+----------+--------+------+
+| Cnum | Cname    | City     | Rating | Snum |
++------+----------+----------+--------+------+
+| 2001 | Hoffman  | London   |    100 | 1001 |
+| 2002 | Giovanni | Rome     |    200 | 1003 |
+| 2003 | Liu      | San Jose |    200 | 1002 |
+| 2004 | Grass    | Berlin   |    300 | 1002 |
+| 2006 | Clemens  | London   |    100 | 1001 |
+| 2008 | Cisneros | San Jose |    300 | 1007 |
+| 2007 | Pereira  | Rome     |    100 | 1004 |
++------+----------+----------+--------+------+
+7 rows in set (0.00 sec)
+
+mysql> select * from salespeople;
++------+---------+-----------+------+
+| Snum | Sname   | City      | Comm |
++------+---------+-----------+------+
+| 1001 | Hoff    | London    | 0.12 |
+| 1002 | Serres  | San Jose  | 0.13 |
+| 1004 | Motika  | London    | 0.11 |
+| 1007 | Rifkin  | Barcelona | 0.15 |
+| 1003 | Axelrod | New York  | 0.10 |
++------+---------+-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> select sname from salespeople;
++---------+
+| sname   |
++---------+
+| Hoff    |
+| Serres  |
+| Motika  |
+| Rifkin  |
+| Axelrod |
++---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customers where cnum <= 2005;
++------+----------+----------+--------+------+
+| Cnum | Cname    | City     | Rating | Snum |
++------+----------+----------+--------+------+
+| 2001 | Hoffman  | London   |    100 | 1001 |
+| 2002 | Giovanni | Rome     |    200 | 1003 |
+| 2003 | Liu      | San Jose |    200 | 1002 |
+| 2004 | Grass    | Berlin   |    300 | 1002 |
++------+----------+----------+--------+------+
+4 rows in set (0.00 sec)
+
+mysql>
